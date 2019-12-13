@@ -43,17 +43,27 @@ import com.mirth.connect.model.Connector;
 import com.mirth.connect.model.ConnectorMetaData;
 import com.mirth.connect.model.DashboardChannelInfo;
 import com.mirth.connect.model.DashboardStatus;
+import com.mirth.connect.model.DashboardStatus.StatusType;
 import com.mirth.connect.model.ExtensionLibrary;
 import com.mirth.connect.model.MetaData;
 import com.mirth.connect.model.PluginClass;
 import com.mirth.connect.model.PluginMetaData;
-import com.mirth.connect.model.ServerEvent;import com.mirth.connect.model.ServerEvent.Level;
+import com.mirth.connect.model.ServerEvent;
+import com.mirth.connect.model.ServerEvent.Level;
+import com.mirth.connect.model.ServerEvent.Outcome;
+import com.mirth.connect.model.SystemInfo;
+import com.mirth.connect.model.SystemStats;
+import com.mirth.connect.model.alert.AlertActionGroup;
 import com.mirth.connect.model.alert.AlertInfo;
 import com.mirth.connect.model.alert.AlertModel;
 import com.mirth.connect.model.alert.AlertStatus;
 import com.mirth.connect.model.alert.DefaultTrigger;
 import com.mirth.connect.model.codetemplates.CodeTemplate;
 import com.mirth.connect.model.codetemplates.CodeTemplateLibrary;
+import com.mirth.connect.model.codetemplates.CodeTemplateLibrarySaveResult;
+import com.mirth.connect.model.codetemplates.CodeTemplateSummary;
+import com.mirth.connect.model.codetemplates.CodeTemplateLibrarySaveResult.CodeTemplateUpdateResult;
+import com.mirth.connect.model.codetemplates.CodeTemplateLibrarySaveResult.LibraryUpdateResult;
 import com.mirth.connect.model.converters.ObjectJSONSerializer;
 import com.mirth.connect.model.converters.ObjectXMLSerializer;
 import com.mirth.connect.model.filters.EventFilter;
@@ -107,10 +117,17 @@ public class SwaggerExamplesServlet extends HttpServlet {
 		} else if (exampleRequested.equals("channel_header_map")) {
 			requestedObject = getChannelHeaderMapExample();
 		} else if (exampleRequested.equals("channel_list")) {
-			requestedObject = getChannelListExample();		} else if (exampleRequested.equals("channel_statistics")) {
+			requestedObject = getChannelListExample();
+		} else if (exampleRequested.equals("channel_group_list")) {
+		    requestedObject = getChannelGroupListExample();
+		} else if (exampleRequested.equals("channel_statistics")) {
 		    requestedObject = getChannelStatisticsExample();
 		} else if (exampleRequested.equals("channel_statistics_list")) {
 		    requestedObject = getChannelStatisticsListExample();
+		} else if (exampleRequested.equals("code_template")) {
+		    requestedObject = getCodeTemplateExample(true);
+		} else if (exampleRequested.equals("code_template_list")) {
+		    requestedObject = getCodeTemplateListExample(true);
 		} else if (exampleRequested.equals("code_template_library")) {
 		    requestedObject = getCodeTemplateLibraryExample(false);
 		} else if (exampleRequested.equals("code_template_library_full_templates")) {
@@ -119,6 +136,12 @@ public class SwaggerExamplesServlet extends HttpServlet {
             requestedObject = getCodeTemplateLibraryListExample(false);
 		} else if (exampleRequested.equals("code_template_library_list_full_templates")) {
             requestedObject = getCodeTemplateLibraryListExample(true);
+		} else if (exampleRequested.equals("code_template_library_saved_result")) {
+		    requestedObject = getCodeTemplateLibrarySavedResultExample();
+		} else if (exampleRequested.equals("code_template_summary_list_revision_changed")) {
+		    requestedObject = getCodeTemplateSummaryListExample(true);
+		} else if (exampleRequested.equals("code_template_summary_list")) {
+            requestedObject = getCodeTemplateSummaryListExample(false);
 		} else if (exampleRequested.equals("connector_map")) {
 		    requestedObject = getConnectorMap(true);
 		} else if (exampleRequested.equals("connector_metadata")) {
@@ -127,11 +150,13 @@ public class SwaggerExamplesServlet extends HttpServlet {
             requestedObject = getConnectorMetaDataMapExample();
         } else if (exampleRequested.equals("start_connector_map")) {
 		    requestedObject = getConnectorMap(false);
+		} else if (exampleRequested.equals("connection_log_item_linked_list")) {
+		    requestedObject = getConnectionLogItemLinkedListExample();
 		} else if (exampleRequested.equals("connector_name_map")) {
 			requestedObject = getConnectorNameMapExample();
 		} else if (exampleRequested.equals("channel_summary_list")) {
 			requestedObject = getChannelSummaryListExample();
-} else if (exampleRequested.equals("dashboard_channel_info")) {
+		} else if (exampleRequested.equals("dashboard_channel_info")) {
 		    requestedObject = getDashboardChannelInfoExample();
 		} else if (exampleRequested.equals("dashboard_status")) {
 		    requestedObject = getDashboardStatusExample();
@@ -151,7 +176,10 @@ public class SwaggerExamplesServlet extends HttpServlet {
             requestedObject = getGlobalMapExample();
         } else if (exampleRequested.equals("global_maps")) {
             requestedObject = getGlobalMapsExample();
-        } else if (exampleRequested.equals("guid_to_name_map")) {			requestedObject = getGuidToNameMapExample();
+        } else if (exampleRequested.equals("guid_to_int_map")) {
+            requestedObject = getGuidToIntMapExample();
+        } else if (exampleRequested.equals("guid_to_name_map")) {
+			requestedObject = getGuidToNameMapExample();
 		} else if (exampleRequested.equals("guid_set")) {
 			requestedObject = getGuidSetExample();
 		} else if (exampleRequested.equals("library_list")) {
@@ -351,6 +379,41 @@ public class SwaggerExamplesServlet extends HttpServlet {
 	    return list;
 	}
 	
+	private CodeTemplateLibrarySaveResult getCodeTemplateLibrarySavedResultExample() {
+	    CodeTemplateLibrarySaveResult savedResult = new CodeTemplateLibrarySaveResult();
+	    savedResult.setOverrideNeeded(true);
+	    savedResult.setLibrariesSuccess(true);
+	    
+	    CodeTemplateUpdateResult templateUpdateResult = new CodeTemplateUpdateResult();
+	    templateUpdateResult.setNewLastModified(dateNow);
+	    templateUpdateResult.setNewRevision(2);
+	    templateUpdateResult.setSuccess(true);
+	    Map<String, CodeTemplateUpdateResult> codeTemplateResults = new HashMap<String, CodeTemplateUpdateResult>();
+	    codeTemplateResults.put(UUID.randomUUID().toString(), templateUpdateResult);
+	    savedResult.setCodeTemplateResults(codeTemplateResults);
+	    
+	    LibraryUpdateResult libraryUpdateResult = new LibraryUpdateResult();
+	    libraryUpdateResult.setNewLastModified(dateNow);
+	    libraryUpdateResult.setNewRevision(2);
+	    Map<String, LibraryUpdateResult> libraryResults = new HashMap<String, LibraryUpdateResult>();
+	    libraryResults.put(UUID.randomUUID().toString(), libraryUpdateResult);
+	    savedResult.setLibraryResults(libraryResults);
+	    
+	    return savedResult;
+	}
+	
+	private CodeTemplateSummary getCodeTemplateSummary() {
+        return new CodeTemplateSummary(UUID.randomUUID().toString(), getCodeTemplateExample(true));
+	}
+	
+	private List<CodeTemplateSummary> getCodeTemplateSummaryListExample(boolean revisionChanged) {
+	    List<CodeTemplateSummary> list = new ArrayList<>();
+	    if (revisionChanged) {
+	        list.add(getCodeTemplateSummary());
+	    }
+	    return list;
+	}
+	
 	private Map<String, List<Integer>> getConnectorMap(boolean includeNull) {
 	    Map<String, List<Integer>> connectorMap = new HashMap<>();
 	    List<Integer> connectorList = new ArrayList<>();
@@ -361,7 +424,9 @@ public class SwaggerExamplesServlet extends HttpServlet {
 	    connectorList.add(1); // destination 1 connector stats
 	    connectorMap.put(UUID.randomUUID().toString(), connectorList);
 	    return connectorMap;
-	}	private ConnectionLogItem getConnectionLogItemExample() {
+	}
+	
+	private ConnectionLogItem getConnectionLogItemExample() {
 	    ConnectionLogItem logItem = new ConnectionLogItem(1L, UUID.randomUUID().toString(), UUID.randomUUID().toString(), 0L, dateFormat.format(dateNow.getTime()), "Channel 1", "Source: Channel Reader (HL7V2 -> JSON)", "Idle", "");
 	    return logItem;
 	}
@@ -422,7 +487,7 @@ public class SwaggerExamplesServlet extends HttpServlet {
 		return connectorNameMap;
 	}
 	
-private DashboardChannelInfo getDashboardChannelInfoExample() {
+	private DashboardChannelInfo getDashboardChannelInfoExample() {
 	    DashboardChannelInfo dashboardChannelInfo = new DashboardChannelInfo(getDashboardStatusListExample(), getGuidSetExample(), 0);
 	    return dashboardChannelInfo;
 	}
@@ -455,6 +520,7 @@ private DashboardChannelInfo getDashboardChannelInfoExample() {
 	    statusList.add(getDashboardStatusExample());
 	    return statusList;
 	}
+	
 	private Map<String, String> getDashboardChannelStateMapExample() {
         Map<String, String> stateMap = new HashMap<>();
         stateMap.put(UUID.randomUUID().toString(), "Idle");
@@ -530,6 +596,12 @@ private DashboardChannelInfo getDashboardChannelInfoExample() {
 		stringSet.add(UUID.randomUUID().toString());
 		stringSet.add(UUID.randomUUID().toString());
 		return stringSet;
+	}
+	
+	private Map<String, Integer> getGuidToIntMapExample() {
+	    Map<String, Integer> guidToIntMap = new HashMap<>();
+	    guidToIntMap.put(UUID.randomUUID().toString(), 1);
+	    return guidToIntMap;
 	}
 	
 	private Map<String, String> getGuidToNameMapExample() {
