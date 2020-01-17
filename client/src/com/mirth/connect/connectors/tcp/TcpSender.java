@@ -151,6 +151,16 @@ public class TcpSender extends ConnectorSettingsPanel implements ActionListener 
             keepConnectionOpenNoRadio.setSelected(true);
             keepConnectionOpenNoRadioActionPerformed(null);
         }
+        
+        // This should be done after updating the UI for isOverrideLocalBinding and isKeepConnectionOpen
+        // because it will override some of the enabling/disabling of fields that are done for those properties
+        if (props.isServerMode()) {
+            modeServerRadio.setSelected(true);
+            modeServerRadioActionPerformed();
+        } else {
+            modeClientRadio.setSelected(true);
+            modeClientRadioActionPerformed();
+        }
 
         if (props.isCheckRemoteHost()) {
             checkRemoteHostYesRadio.setSelected(true);
