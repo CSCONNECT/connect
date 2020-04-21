@@ -28,8 +28,8 @@ public class KafkaReceiverProperties extends ConnectorProperties implements Poll
         pollConnectorProperties = new PollConnectorProperties();
         sourceConnectorProperties = new SourceConnectorProperties();
 
-        bootstrapServers = "";
-        topic = "";
+        bootstrapServers = "localhost:9092";
+        topic = "demo-kafka-1";
         maxPollRecords = 10;
         offsetReset = "earliest";
     }

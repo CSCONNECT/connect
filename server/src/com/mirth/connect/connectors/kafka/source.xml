@@ -11,6 +11,7 @@
     <library type="CLIENT" path="kafka-client.jar"/>
     <library type="SHARED" path="kafka-shared.jar"/>
     <library type="SERVER" path="kafka-server.jar" />
+    <library type="SERVER" path="lib/kafka-clients-2.5.0.jar" />
     <transformers></transformers>
     <protocol>kafka</protocol>
     <type>SOURCE</type>
