@@ -1,0 +1,17 @@
+<connectorMetaData path="kafka">
+    <name>Kafka Listener</name>
+    <author>Shehan Cooray</author>
+    <pluginVersion>@mirthversion</pluginVersion>
+    <mirthVersion>@mirthversion</mirthVersion>
+    <url>http://www.nextgen.com</url>
+    <description>This connector allows Mirth Connect to listen to kafka topic</description>
+    <clientClassName>com.mirth.connect.connectors.kafka.KafkaListener</clientClassName>
+    <sharedClassName>com.mirth.connect.connectors.kafka.KafkaReceiverProperties</sharedClassName>
+    <serverClassName>com.mirth.connect.connectors.kafka.KafkaReceiver</serverClassName>
+    <library type="CLIENT" path="kafka-client.jar"/>
+    <library type="SHARED" path="kafka-shared.jar"/>
+    <library type="SERVER" path="kafka-server.jar" />
+    <transformers></transformers>
+    <protocol>kafka</protocol>
+    <type>SOURCE</type>
+</connectorMetaData>

@@ -27,6 +27,7 @@
 		<property name="connectors.tcp" value="${extensions}/tcp" />
 		<property name="connectors.file" value="${extensions}/file" />
 		<property name="connectors.js" value="${extensions}/js" />
+		<property name="connectors.kafka" value="${extensions}/kafka" />
 		<property name="connectors.udp" value="${extensions}/udp" />
 		<property name="connectors.ws" value="${extensions}/ws" />
 		<property name="connectors.vm" value="${extensions}/vm" />
@@ -318,7 +319,26 @@
 				<exclude name="com/mirth/connect/connectors/js/JavaScriptDispatcherProperties.class" />
 			</fileset>
 		</jar>
-		
+
+		<!-- connectors.kafka -->
+		<mkdir dir="${connectors.kafka}" />
+		<copy todir="${connectors.kafka}">
+			<fileset dir="${src}/com/mirth/connect/connectors/kafka">
+				<include name="*.xml" />
+			</fileset>
+		</copy>
+		<copy todir="${connectors.kafka}/lib" failonerror="false">
+			<fileset dir="${lib.extensions}/kafka" />
+		</copy>
+		<jar destfile="${connectors.kafka}/kafka-shared.jar" basedir="${classes}">
+			<include name="com/mirth/connect/connectors/kafka/**"/>
+		</jar>
+		<jar destfile="${connectors.kafka}/kafka-server.jar">
+			<fileset dir="${classes}">
+				<include name="com/mirth/connect/connectors/kafka/**"/>
+			</fileset>
+		</jar>
+
 		<!-- connectors.udp -->
 		<mkdir dir="${connectors.udp}" />
 		<copy todir="${connectors.udp}">
