@@ -39,13 +39,17 @@ import java.util.Properties;
 
 public class KafkaReceiver extends PollConnector {
     private Logger logger = Logger.getLogger(getClass());
+    private static final String OFFSET_LATEST = "latest";
+    private static final String OFFSET_EARLIEST = "earliest";
     private EventController eventController = ControllerFactory.getFactory().createEventController();
     private ContextFactoryController contextFactoryController = ControllerFactory.getFactory().createContextFactoryController();
     private KafkaReceiverProperties kafkaReceiverProperties;
+    private Consumer<Long, String> consumer;
 
     @Override
     public void onDeploy() throws ConnectorTaskException {
         this.kafkaReceiverProperties = (KafkaReceiverProperties) getConnectorProperties();
+        createConsumer();
         eventController.dispatchEvent(new ConnectionStatusEvent(getChannelId(), getMetaDataId(), getSourceName(), ConnectionStatusEventType.IDLE));
     }
 
@@ -56,29 +60,28 @@ public class KafkaReceiver extends PollConnector {
 
     @Override
     public void onUndeploy() throws ConnectorTaskException {
-
+        consumer.close();
     }
 
     @Override
     public void onStart() throws ConnectorTaskException {
-
+        createConsumer();
     }
 
     @Override
     public void onStop() throws ConnectorTaskException {
-
+        consumer.close();
     }
 
     @Override
     public void onHalt() throws ConnectorTaskException {
-
+        consumer.close();
     }
 
     @Override
     protected void poll() throws InterruptedException {
         eventController.dispatchEvent(new ConnectionStatusEvent(getChannelId(), getMetaDataId(), getSourceName(), ConnectionStatusEventType.READING));
-
-        ConsumerRecords<Long, String> records = runConsumer();
+        ConsumerRecords<Long, String> records = consumer.poll(0);
         for (RawMessage rawMessage : convert(records)) {
             if (isTerminated()) {
                 return;
@@ -114,27 +117,26 @@ public class KafkaReceiver extends PollConnector {
             }
         }
 
-
     }
-    private ConsumerRecords<Long, String> runConsumer () {
-        Consumer<Long, String> consumer = createConsumer();
-        ConsumerRecords<Long, String> consumerRecords = consumer.poll(1000);
-        consumer.close();
-        return consumerRecords;
-    }
+//    private ConsumerRecords<Long, String> runConsumer () {
+//        Consumer<Long, String> consumer = createConsumer();
+//        ConsumerRecords<Long, String> consumerRecords = consumer.poll(100);
+//        consumer.close();
+//        return consumerRecords;
+//    }
 
-    private Consumer<Long, String> createConsumer () {
+    private void createConsumer () {
         Properties props = new Properties();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaReceiverProperties.getBootstrapServers());
-        props.put(ConsumerConfig.GROUP_ID_CONFIG, "my-group-id");
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, kafkaReceiverProperties.getGroupId());
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, LongDeserializer.class.getName());
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         props.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, kafkaReceiverProperties.getMaxPollRecords());
         props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "true");
-        props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, kafkaReceiverProperties.getOffsetReset());
+        props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, kafkaReceiverProperties.isOffsetResetEarliest() ? OFFSET_EARLIEST : OFFSET_LATEST);
         Consumer<Long, String> consumer = new KafkaConsumer<>(props);
         consumer.subscribe(Collections.singletonList(kafkaReceiverProperties.getTopic()));
-        return consumer;
+        this.consumer = consumer;
     }
 
     private List<RawMessage> convert(ConsumerRecords < Long, String > records){

@@ -11,6 +11,7 @@ package com.mirth.connect.connectors.kafka;
 
 import com.mirth.connect.donkey.model.channel.*;
 import com.mirth.connect.donkey.util.DonkeyElement;
+import org.apache.commons.lang3.builder.EqualsBuilder;
 
 import java.util.Map;
 
@@ -20,18 +21,20 @@ public class KafkaReceiverProperties extends ConnectorProperties implements Poll
     private PollConnectorProperties pollConnectorProperties;
     private SourceConnectorProperties sourceConnectorProperties;
     private String bootstrapServers;
+    private String groupId;
     private String topic;
     private Integer maxPollRecords;
-    private String offsetReset;
+    private Boolean offsetResetEarliest;
 
     public KafkaReceiverProperties() {
         pollConnectorProperties = new PollConnectorProperties();
         sourceConnectorProperties = new SourceConnectorProperties();
 
-        bootstrapServers = "localhost:9092";
-        topic = "demo-kafka-1";
+        bootstrapServers = "";
+        groupId = "";
+        topic = "";
         maxPollRecords = 10;
-        offsetReset = "earliest";
+        offsetResetEarliest = true;
     }
 
     @Override
@@ -46,6 +49,14 @@ public class KafkaReceiverProperties extends ConnectorProperties implements Poll
 
     public void setBootstrapServers(String bootstrapServers) {
         this.bootstrapServers = bootstrapServers;
+    }
+
+    public String getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
     }
 
     public String getTopic() {
@@ -64,12 +75,12 @@ public class KafkaReceiverProperties extends ConnectorProperties implements Poll
         this.maxPollRecords = maxPollRecords;
     }
 
-    public String getOffsetReset() {
-        return offsetReset;
+    public Boolean isOffsetResetEarliest() {
+        return offsetResetEarliest;
     }
 
-    public void setOffsetReset(String offsetReset) {
-        this.offsetReset = offsetReset;
+    public void setOffsetResetEarliest(Boolean offsetResetEarliest) {
+        this.offsetResetEarliest = offsetResetEarliest;
     }
 
     @Override
@@ -77,7 +88,7 @@ public class KafkaReceiverProperties extends ConnectorProperties implements Poll
 
     @Override
     public boolean equals(Object obj) {
-        return false;
+        return EqualsBuilder.reflectionEquals(this, obj);
     }
 
     @Override
@@ -113,6 +124,11 @@ public class KafkaReceiverProperties extends ConnectorProperties implements Poll
         Map<String, Object> purgedProperties = super.getPurgedProperties();
         purgedProperties.put("pollConnectorProperties", pollConnectorProperties.getPurgedProperties());
         purgedProperties.put("sourceConnectorProperties", sourceConnectorProperties.getPurgedProperties());
+        purgedProperties.put("bootstrapServers", bootstrapServers);
+        purgedProperties.put("groupId", groupId);
+        purgedProperties.put("topic", topic);
+        purgedProperties.put("maxPollRecords", maxPollRecords);
+        purgedProperties.put("offsetResetEarliest", offsetResetEarliest);
         return purgedProperties;
     }
 }
