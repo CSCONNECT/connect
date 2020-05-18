@@ -364,6 +364,8 @@ public class ReferenceListFactory {
         addReference(new ParameterizedCodeReference(CONTEXT_RESPONSE_MAP, Category.MAP.toString(), "Create Error Response", "Creates an unsuccessful response object.", "ResponseFactory.getErrorResponse('${message}')"));
 
         // Utility references
+        addReference(new ParameterizedCodeReference(CONTEXT_GLOBAL, Category.UTILITY.toString(), "Build Rest Get", "Create http get request", "var ${response} = Rest.build().get('${url}');"));
+        addReference(new ParameterizedCodeReference(CONTEXT_GLOBAL, Category.UTILITY.toString(), "Build Rest Post", "Create http post request", "var ${response} = Rest.build().post('${url}', '${body}');"));
         addReference(new ParameterizedCodeReference(CONTEXT_GLOBAL, Category.UTILITY.toString(), "Build Map", "Creates a new HashMap and adds an entry to it.", "var ${map} = Maps.map().add('${key}', ${value});"));
         addReference(new ParameterizedCodeReference(CONTEXT_GLOBAL, Category.UTILITY.toString(), "Build List", "Creates a new ArrayList and adds an element to it.", "var ${list} = Lists.list().append(${element});"));
         addReference(new ParameterizedCodeReference(CONTEXT_GLOBAL, Category.UTILITY.toString(), "Use Java Class", "Access any Java class in the current classpath", "var ${object} = Packages.${[fully-qualified name]};"));
