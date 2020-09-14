@@ -54,4 +54,10 @@ public class XMLDataTypeProperties extends DataTypeProperties {
         purgedProperties.put("batchProperties", batchProperties.getPurgedProperties());
         return purgedProperties;
     }
+
+	@Override
+	public void migrate3_9_1(DonkeyElement element) {
+		// TODO Auto-generated method stub
+		
+	}
 }

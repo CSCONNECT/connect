@@ -121,4 +121,10 @@ public class AttachmentHandlerProperties implements Serializable, Migratable, Pu
     
     @Override
     public void migrate3_9_0(DonkeyElement element) {}
+
+	@Override
+	public void migrate3_9_1(DonkeyElement element) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.mirth.connect.donkey.model.channel.ConnectorPluginProperties;
+import com.mirth.connect.donkey.util.DonkeyElement;
 import com.mirth.connect.plugins.httpauth.HttpAuthConnectorPluginProperties;
 
 public class OAuth2HttpAuthProperties extends HttpAuthConnectorPluginProperties {
@@ -111,4 +112,10 @@ public class OAuth2HttpAuthProperties extends HttpAuthConnectorPluginProperties 
         }
         return purgedProperties;
     }
+
+	@Override
+	public void migrate3_9_1(DonkeyElement element) {
+		// TODO Auto-generated method stub
+		
+	}
 }

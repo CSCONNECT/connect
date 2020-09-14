@@ -139,5 +139,15 @@ public class MongoDispatcherProperties extends ConnectorProperties implements De
 		public void setHostAddress(String hostAddress) {
 			this.hostAddress = hostAddress;
 		}
+		@Override
+		public void migrate3_9_0(DonkeyElement element) {
+			// TODO Auto-generated method stub
+			
+		}
+		@Override
+		public void migrate3_9_1(DonkeyElement element) {
+			// TODO Auto-generated method stub
+			
+		}
 
 }

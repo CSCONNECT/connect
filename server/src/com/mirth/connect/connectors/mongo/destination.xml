@@ -2,7 +2,7 @@
 	<name>MongoDB Writer</name>
 	<author>Davut Gurbuz</author>
 	<pluginVersion>@mirthversion</pluginVersion>
-	<mirthVersion>3.9.0</mirthVersion>
+	<mirthVersion>3.9.1</mirthVersion>
 	<url>https://www.cloudsolution-sa.com/</url>
 	<description>This connector allows CS Connect to insert JSON documents to mongo DB</description>
 	<clientClassName>com.mirth.connect.connectors.mongo.MongoWriter</clientClassName>

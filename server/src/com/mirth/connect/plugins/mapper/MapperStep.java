@@ -20,6 +20,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
+import com.mirth.connect.donkey.util.DonkeyElement;
 import com.mirth.connect.model.FilterTransformerIterable;
 import com.mirth.connect.model.IteratorProperties;
 import com.mirth.connect.model.Step;
@@ -231,4 +232,10 @@ public class MapperStep extends Step implements FilterTransformerIterable<Step> 
             return label;
         }
     }
+
+	@Override
+	public void migrate3_9_1(DonkeyElement element) {
+		// TODO Auto-generated method stub
+		
+	}
 }

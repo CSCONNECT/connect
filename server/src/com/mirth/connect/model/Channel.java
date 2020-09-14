@@ -360,7 +360,10 @@ public class Channel implements Serializable, Auditable, Migratable, Purgable, C
     
     @Override
     public void migrate3_9_0(DonkeyElement element) {}
-
+    
+    @Override
+    public void migrate3_9_1(DonkeyElement element) {}
+    
     @Override
     public Map<String, Object> getPurgedProperties() {
         Map<String, Object> purgedProperties = new HashMap<String, Object>();

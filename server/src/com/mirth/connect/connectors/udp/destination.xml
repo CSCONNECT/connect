@@ -2,7 +2,7 @@
 	<name>UDP Writer</name>
 	<author>Davut Gurbuz</author>
 	<pluginVersion>@mirthversion</pluginVersion>
-	<mirthVersion>3.9.0</mirthVersion>
+	<mirthVersion>3.9.1</mirthVersion>
 	<url>http://www.cloudsolution-sa.com</url>
 	<description>This connector allows Mirth Connect to execute UDP to connect to an arbitrary destination.</description>
 	<clientClassName>com.mirth.connect.connectors.udp.UdpWriter</clientClassName>

@@ -84,26 +84,27 @@ public class JsonMessageBodyReaderTest {
         
     private static final String GOOD_CHANNEL_ID = "340f6381-7259-4a4d-baf3-694432697ae6";
     
+    private static final String version="3.9.1";
     // @formatter:off
     private static final String GOOD_CHANNEL = 
             "{\n" + 
             "  \"channel\": {\n" + 
-            "    \"@version\": \"3.9.0\",\n" + 
+            "    \"@version\": \""+version+"\",\n" + 
             "    \"id\": \"" + GOOD_CHANNEL_ID + "\",\n" + 
             "    \"nextMetaDataId\": 2,\n" + 
             "    \"name\": \"test1\",\n" + 
             "    \"description\": null,\n" + 
             "    \"revision\": 2,\n" + 
             "    \"sourceConnector\": {\n" + 
-            "      \"@version\": \"3.9.0\",\n" + 
+            "      \"@version\": \""+version+"\",\n" + 
             "      \"metaDataId\": 0,\n" + 
             "      \"name\": \"sourceConnector\",\n" + 
             "      \"properties\": {\n" + 
             "        \"@class\": \"com.mirth.connect.connectors.vm.VmReceiverProperties\",\n" + 
-            "        \"@version\": \"3.9.0\",\n" + 
+            "        \"@version\": \""+version+"\",\n" + 
             "        \"pluginProperties\": null,\n" + 
             "        \"sourceConnectorProperties\": {\n" + 
-            "          \"@version\": \"3.9.0\",\n" + 
+            "          \"@version\": \""+version+"\",\n" + 
             "          \"responseVariable\": \"None\",\n" + 
             "          \"respondAfterProcessing\": true,\n" + 
             "          \"processBatch\": false,\n" + 
@@ -122,16 +123,16 @@ public class JsonMessageBodyReaderTest {
             "        }\n" + 
             "      },\n" + 
             "      \"transformer\": {\n" + 
-            "        \"@version\": \"3.9.0\",\n" + 
+            "        \"@version\": \""+version+"\",\n" + 
             "        \"elements\": null,\n" + 
             "        \"inboundDataType\": \"HL7V2\",\n" + 
             "        \"outboundDataType\": \"HL7V2\",\n" + 
             "        \"inboundProperties\": {\n" + 
             "          \"@class\": \"com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties\",\n" + 
-            "          \"@version\": \"3.9.0\",\n" + 
+            "          \"@version\": \""+version+"\",\n" + 
             "          \"serializationProperties\": {\n" + 
             "            \"@class\": \"com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties\",\n" + 
-            "            \"@version\": \"3.9.0\",\n" + 
+            "            \"@version\": \""+version+"\",\n" + 
             "            \"handleRepetitions\": true,\n" + 
             "            \"handleSubcomponents\": true,\n" + 
             "            \"useStrictParser\": false,\n" + 
@@ -142,20 +143,20 @@ public class JsonMessageBodyReaderTest {
             "          },\n" + 
             "          \"deserializationProperties\": {\n" + 
             "            \"@class\": \"com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties\",\n" + 
-            "            \"@version\": \"3.9.0\",\n" + 
+            "            \"@version\": \""+version+"\",\n" + 
             "            \"useStrictParser\": false,\n" + 
             "            \"useStrictValidation\": false,\n" + 
             "            \"segmentDelimiter\": \"\\\\r\"\n" + 
             "          },\n" + 
             "          \"batchProperties\": {\n" + 
             "            \"@class\": \"com.mirth.connect.plugins.datatypes.hl7v2.HL7v2BatchProperties\",\n" + 
-            "            \"@version\": \"3.9.0\",\n" + 
+            "            \"@version\": \""+version+"\",\n" + 
             "            \"splitType\": \"MSH_Segment\",\n" + 
             "            \"batchScript\": null\n" + 
             "          },\n" + 
             "          \"responseGenerationProperties\": {\n" + 
             "            \"@class\": \"com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseGenerationProperties\",\n" + 
-            "            \"@version\": \"3.9.0\",\n" + 
+            "            \"@version\": \""+version+"\",\n" + 
             "            \"segmentDelimiter\": \"\\\\r\",\n" + 
             "            \"successfulACKCode\": \"AA\",\n" + 
             "            \"successfulACKMessage\": null,\n" + 
@@ -168,7 +169,7 @@ public class JsonMessageBodyReaderTest {
             "          },\n" + 
             "          \"responseValidationProperties\": {\n" + 
             "            \"@class\": \"com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseValidationProperties\",\n" + 
-            "            \"@version\": \"3.9.0\",\n" + 
+            "            \"@version\": \""+version+"\",\n" + 
             "            \"successfulACKCode\": \"AA,CA\",\n" + 
             "            \"errorACKCode\": \"AE,CE\",\n" + 
             "            \"rejectedACKCode\": \"AR,CR\",\n" + 
@@ -179,10 +180,10 @@ public class JsonMessageBodyReaderTest {
             "        },\n" + 
             "        \"outboundProperties\": {\n" + 
             "          \"@class\": \"com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties\",\n" + 
-            "          \"@version\": \"3.9.0\",\n" + 
+            "          \"@version\": \""+version+"\",\n" + 
             "          \"serializationProperties\": {\n" + 
             "            \"@class\": \"com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties\",\n" + 
-            "            \"@version\": \"3.9.0\",\n" + 
+            "            \"@version\": \""+version+"\",\n" + 
             "            \"handleRepetitions\": true,\n" + 
             "            \"handleSubcomponents\": true,\n" + 
             "            \"useStrictParser\": false,\n" + 
@@ -193,20 +194,20 @@ public class JsonMessageBodyReaderTest {
             "          },\n" + 
             "          \"deserializationProperties\": {\n" + 
             "            \"@class\": \"com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties\",\n" + 
-            "            \"@version\": \"3.9.0\",\n" + 
+            "            \"@version\": \""+version+"\",\n" + 
             "            \"useStrictParser\": false,\n" + 
             "            \"useStrictValidation\": false,\n" + 
             "            \"segmentDelimiter\": \"\\\\r\"\n" + 
             "          },\n" + 
             "          \"batchProperties\": {\n" + 
             "            \"@class\": \"com.mirth.connect.plugins.datatypes.hl7v2.HL7v2BatchProperties\",\n" + 
-            "            \"@version\": \"3.9.0\",\n" + 
+            "            \"@version\": \""+version+"\",\n" + 
             "            \"splitType\": \"MSH_Segment\",\n" + 
             "            \"batchScript\": null\n" + 
             "          },\n" + 
             "          \"responseGenerationProperties\": {\n" + 
             "            \"@class\": \"com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseGenerationProperties\",\n" + 
-            "            \"@version\": \"3.9.0\",\n" + 
+            "            \"@version\": \""+version+"\",\n" + 
             "            \"segmentDelimiter\": \"\\\\r\",\n" + 
             "            \"successfulACKCode\": \"AA\",\n" + 
             "            \"successfulACKMessage\": null,\n" + 
@@ -219,7 +220,7 @@ public class JsonMessageBodyReaderTest {
             "          },\n" + 
             "          \"responseValidationProperties\": {\n" + 
             "            \"@class\": \"com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseValidationProperties\",\n" + 
-            "            \"@version\": \"3.9.0\",\n" + 
+            "            \"@version\": \""+version+"\",\n" + 
             "            \"successfulACKCode\": \"AA,CA\",\n" + 
             "            \"errorACKCode\": \"AE,CE\",\n" + 
             "            \"rejectedACKCode\": \"AR,CR\",\n" + 
@@ -230,7 +231,7 @@ public class JsonMessageBodyReaderTest {
             "        }\n" + 
             "      },\n" + 
             "      \"filter\": {\n" + 
-            "        \"@version\": \"3.9.0\",\n" + 
+            "        \"@version\": \""+version+"\",\n" + 
             "        \"elements\": null\n" + 
             "      },\n" + 
             "      \"transportName\": \"Channel Reader\",\n" + 
@@ -240,15 +241,15 @@ public class JsonMessageBodyReaderTest {
             "    },\n" + 
             "    \"destinationConnectors\": {\n" + 
             "      \"connector\": {\n" + 
-            "        \"@version\": \"3.9.0\",\n" + 
+            "        \"@version\": \""+version+"\",\n" + 
             "        \"metaDataId\": 1,\n" + 
             "        \"name\": \"Destination 1\",\n" + 
             "        \"properties\": {\n" + 
             "          \"@class\": \"com.mirth.connect.connectors.vm.VmDispatcherProperties\",\n" + 
-            "          \"@version\": \"3.9.0\",\n" + 
+            "          \"@version\": \""+version+"\",\n" + 
             "          \"pluginProperties\": null,\n" + 
             "          \"destinationConnectorProperties\": {\n" + 
-            "            \"@version\": \"3.9.0\",\n" + 
+            "            \"@version\": \""+version+"\",\n" + 
             "            \"queueEnabled\": false,\n" + 
             "            \"sendFirst\": false,\n" + 
             "            \"retryIntervalMillis\": 10000,\n" + 
@@ -276,16 +277,16 @@ public class JsonMessageBodyReaderTest {
             "          \"mapVariables\": null\n" + 
             "        },\n" + 
             "        \"transformer\": {\n" + 
-            "          \"@version\": \"3.9.0\",\n" + 
+            "          \"@version\": \""+version+"\",\n" + 
             "          \"elements\": null,\n" + 
             "          \"inboundDataType\": \"HL7V2\",\n" + 
             "          \"outboundDataType\": \"HL7V2\",\n" + 
             "          \"inboundProperties\": {\n" + 
             "            \"@class\": \"com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties\",\n" + 
-            "            \"@version\": \"3.9.0\",\n" + 
+            "            \"@version\": \""+version+"\",\n" + 
             "            \"serializationProperties\": {\n" + 
             "              \"@class\": \"com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties\",\n" + 
-            "              \"@version\": \"3.9.0\",\n" + 
+            "              \"@version\": \""+version+"\",\n" + 
             "              \"handleRepetitions\": true,\n" + 
             "              \"handleSubcomponents\": true,\n" + 
             "              \"useStrictParser\": false,\n" + 
@@ -296,20 +297,20 @@ public class JsonMessageBodyReaderTest {
             "            },\n" + 
             "            \"deserializationProperties\": {\n" + 
             "              \"@class\": \"com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties\",\n" + 
-            "              \"@version\": \"3.9.0\",\n" + 
+            "              \"@version\": \""+version+"\",\n" + 
             "              \"useStrictParser\": false,\n" + 
             "              \"useStrictValidation\": false,\n" + 
             "              \"segmentDelimiter\": \"\\\\r\"\n" + 
             "            },\n" + 
             "            \"batchProperties\": {\n" + 
             "              \"@class\": \"com.mirth.connect.plugins.datatypes.hl7v2.HL7v2BatchProperties\",\n" + 
-            "              \"@version\": \"3.9.0\",\n" + 
+            "              \"@version\": \""+version+"\",\n" + 
             "              \"splitType\": \"MSH_Segment\",\n" + 
             "              \"batchScript\": null\n" + 
             "            },\n" + 
             "            \"responseGenerationProperties\": {\n" + 
             "              \"@class\": \"com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseGenerationProperties\",\n" + 
-            "              \"@version\": \"3.9.0\",\n" + 
+            "              \"@version\": \""+version+"\",\n" + 
             "              \"segmentDelimiter\": \"\\\\r\",\n" + 
             "              \"successfulACKCode\": \"AA\",\n" + 
             "              \"successfulACKMessage\": null,\n" + 
@@ -322,7 +323,7 @@ public class JsonMessageBodyReaderTest {
             "            },\n" + 
             "            \"responseValidationProperties\": {\n" + 
             "              \"@class\": \"com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseValidationProperties\",\n" + 
-            "              \"@version\": \"3.9.0\",\n" + 
+            "              \"@version\": \""+version+"\",\n" + 
             "              \"successfulACKCode\": \"AA,CA\",\n" + 
             "              \"errorACKCode\": \"AE,CE\",\n" + 
             "              \"rejectedACKCode\": \"AR,CR\",\n" + 
@@ -333,10 +334,10 @@ public class JsonMessageBodyReaderTest {
             "          },\n" + 
             "          \"outboundProperties\": {\n" + 
             "            \"@class\": \"com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties\",\n" + 
-            "            \"@version\": \"3.9.0\",\n" + 
+            "            \"@version\": \""+version+"\",\n" + 
             "            \"serializationProperties\": {\n" + 
             "              \"@class\": \"com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties\",\n" + 
-            "              \"@version\": \"3.9.0\",\n" + 
+            "              \"@version\": \""+version+"\",\n" + 
             "              \"handleRepetitions\": true,\n" + 
             "              \"handleSubcomponents\": true,\n" + 
             "              \"useStrictParser\": false,\n" + 
@@ -347,20 +348,20 @@ public class JsonMessageBodyReaderTest {
             "            },\n" + 
             "            \"deserializationProperties\": {\n" + 
             "              \"@class\": \"com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties\",\n" + 
-            "              \"@version\": \"3.9.0\",\n" + 
+            "              \"@version\": \""+version+"\",\n" + 
             "              \"useStrictParser\": false,\n" + 
             "              \"useStrictValidation\": false,\n" + 
             "              \"segmentDelimiter\": \"\\\\r\"\n" + 
             "            },\n" + 
             "            \"batchProperties\": {\n" + 
             "              \"@class\": \"com.mirth.connect.plugins.datatypes.hl7v2.HL7v2BatchProperties\",\n" + 
-            "              \"@version\": \"3.9.0\",\n" + 
+            "              \"@version\": \""+version+"\",\n" + 
             "              \"splitType\": \"MSH_Segment\",\n" + 
             "              \"batchScript\": null\n" + 
             "            },\n" + 
             "            \"responseGenerationProperties\": {\n" + 
             "              \"@class\": \"com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseGenerationProperties\",\n" + 
-            "              \"@version\": \"3.9.0\",\n" + 
+            "              \"@version\": \""+version+"\",\n" + 
             "              \"segmentDelimiter\": \"\\\\r\",\n" + 
             "              \"successfulACKCode\": \"AA\",\n" + 
             "              \"successfulACKMessage\": null,\n" + 
@@ -373,7 +374,7 @@ public class JsonMessageBodyReaderTest {
             "            },\n" + 
             "            \"responseValidationProperties\": {\n" + 
             "              \"@class\": \"com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseValidationProperties\",\n" + 
-            "              \"@version\": \"3.9.0\",\n" + 
+            "              \"@version\": \""+version+"\",\n" + 
             "              \"successfulACKCode\": \"AA,CA\",\n" + 
             "              \"errorACKCode\": \"AE,CE\",\n" + 
             "              \"rejectedACKCode\": \"AR,CR\",\n" + 
@@ -384,16 +385,16 @@ public class JsonMessageBodyReaderTest {
             "          }\n" + 
             "        },\n" + 
             "        \"responseTransformer\": {\n" + 
-            "          \"@version\": \"3.9.0\",\n" + 
+            "          \"@version\": \""+version+"\",\n" + 
             "          \"elements\": null,\n" + 
             "          \"inboundDataType\": \"HL7V2\",\n" + 
             "          \"outboundDataType\": \"HL7V2\",\n" + 
             "          \"inboundProperties\": {\n" + 
             "            \"@class\": \"com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties\",\n" + 
-            "            \"@version\": \"3.9.0\",\n" + 
+            "            \"@version\": \""+version+"\",\n" + 
             "            \"serializationProperties\": {\n" + 
             "              \"@class\": \"com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties\",\n" + 
-            "              \"@version\": \"3.9.0\",\n" + 
+            "              \"@version\": \""+version+"\",\n" + 
             "              \"handleRepetitions\": true,\n" + 
             "              \"handleSubcomponents\": true,\n" + 
             "              \"useStrictParser\": false,\n" + 
@@ -404,20 +405,20 @@ public class JsonMessageBodyReaderTest {
             "            },\n" + 
             "            \"deserializationProperties\": {\n" + 
             "              \"@class\": \"com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties\",\n" + 
-            "              \"@version\": \"3.9.0\",\n" + 
+            "              \"@version\": \""+version+"\",\n" + 
             "              \"useStrictParser\": false,\n" + 
             "              \"useStrictValidation\": false,\n" + 
             "              \"segmentDelimiter\": \"\\\\r\"\n" + 
             "            },\n" + 
             "            \"batchProperties\": {\n" + 
             "              \"@class\": \"com.mirth.connect.plugins.datatypes.hl7v2.HL7v2BatchProperties\",\n" + 
-            "              \"@version\": \"3.9.0\",\n" + 
+            "              \"@version\": \""+version+"\",\n" + 
             "              \"splitType\": \"MSH_Segment\",\n" + 
             "              \"batchScript\": null\n" + 
             "            },\n" + 
             "            \"responseGenerationProperties\": {\n" + 
             "              \"@class\": \"com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseGenerationProperties\",\n" + 
-            "              \"@version\": \"3.9.0\",\n" + 
+            "              \"@version\": \""+version+"\",\n" + 
             "              \"segmentDelimiter\": \"\\\\r\",\n" + 
             "              \"successfulACKCode\": \"AA\",\n" + 
             "              \"successfulACKMessage\": null,\n" + 
@@ -430,7 +431,7 @@ public class JsonMessageBodyReaderTest {
             "            },\n" + 
             "            \"responseValidationProperties\": {\n" + 
             "              \"@class\": \"com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseValidationProperties\",\n" + 
-            "              \"@version\": \"3.9.0\",\n" + 
+            "              \"@version\": \""+version+"\",\n" + 
             "              \"successfulACKCode\": \"AA,CA\",\n" + 
             "              \"errorACKCode\": \"AE,CE\",\n" + 
             "              \"rejectedACKCode\": \"AR,CR\",\n" + 
@@ -441,10 +442,10 @@ public class JsonMessageBodyReaderTest {
             "          },\n" + 
             "          \"outboundProperties\": {\n" + 
             "            \"@class\": \"com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties\",\n" + 
-            "            \"@version\": \"3.9.0\",\n" + 
+            "            \"@version\": \""+version+"\",\n" + 
             "            \"serializationProperties\": {\n" + 
             "              \"@class\": \"com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties\",\n" + 
-            "              \"@version\": \"3.9.0\",\n" + 
+            "              \"@version\": \""+version+"\",\n" + 
             "              \"handleRepetitions\": true,\n" + 
             "              \"handleSubcomponents\": true,\n" + 
             "              \"useStrictParser\": false,\n" + 
@@ -455,20 +456,20 @@ public class JsonMessageBodyReaderTest {
             "            },\n" + 
             "            \"deserializationProperties\": {\n" + 
             "              \"@class\": \"com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties\",\n" + 
-            "              \"@version\": \"3.9.0\",\n" + 
+            "              \"@version\": \""+version+"\",\n" + 
             "              \"useStrictParser\": false,\n" + 
             "              \"useStrictValidation\": false,\n" + 
             "              \"segmentDelimiter\": \"\\\\r\"\n" + 
             "            },\n" + 
             "            \"batchProperties\": {\n" + 
             "              \"@class\": \"com.mirth.connect.plugins.datatypes.hl7v2.HL7v2BatchProperties\",\n" + 
-            "              \"@version\": \"3.9.0\",\n" + 
+            "              \"@version\": \""+version+"\",\n" + 
             "              \"splitType\": \"MSH_Segment\",\n" + 
             "              \"batchScript\": null\n" + 
             "            },\n" + 
             "            \"responseGenerationProperties\": {\n" + 
             "              \"@class\": \"com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseGenerationProperties\",\n" + 
-            "              \"@version\": \"3.9.0\",\n" + 
+            "              \"@version\": \""+version+"\",\n" + 
             "              \"segmentDelimiter\": \"\\\\r\",\n" + 
             "              \"successfulACKCode\": \"AA\",\n" + 
             "              \"successfulACKMessage\": null,\n" + 
@@ -481,7 +482,7 @@ public class JsonMessageBodyReaderTest {
             "            },\n" + 
             "            \"responseValidationProperties\": {\n" + 
             "              \"@class\": \"com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseValidationProperties\",\n" + 
-            "              \"@version\": \"3.9.0\",\n" + 
+            "              \"@version\": \""+version+"\",\n" + 
             "              \"successfulACKCode\": \"AA,CA\",\n" + 
             "              \"errorACKCode\": \"AE,CE\",\n" + 
             "              \"rejectedACKCode\": \"AR,CR\",\n" + 
@@ -492,7 +493,7 @@ public class JsonMessageBodyReaderTest {
             "          }\n" + 
             "        },\n" + 
             "        \"filter\": {\n" + 
-            "          \"@version\": \"3.9.0\",\n" + 
+            "          \"@version\": \""+version+"\",\n" + 
             "          \"elements\": null\n" + 
             "        },\n" + 
             "        \"transportName\": \"Channel Writer\",\n" + 
@@ -506,7 +507,7 @@ public class JsonMessageBodyReaderTest {
             "    \"deployScript\": \"// This script executes once when the channel is deployed\\n// You only have access to the globalMap and globalChannelMap here to persist data\\nreturn;\",\n" + 
             "    \"undeployScript\": \"// This script executes once when the channel is undeployed\\n// You only have access to the globalMap and globalChannelMap here to persist data\\nreturn;\",\n" + 
             "    \"properties\": {\n" + 
-            "      \"@version\": \"3.9.0\",\n" + 
+            "      \"@version\": \""+version+"\",\n" + 
             "      \"clearGlobalChannelMap\": true,\n" + 
             "      \"messageStorageMode\": \"DEVELOPMENT\",\n" + 
             "      \"encryptData\": false,\n" + 
@@ -530,7 +531,7 @@ public class JsonMessageBodyReaderTest {
             "        ]\n" + 
             "      },\n" + 
             "      \"attachmentProperties\": {\n" + 
-            "        \"@version\": \"3.9.0\",\n" + 
+            "        \"@version\": \""+version+"\",\n" + 
             "        \"type\": \"None\",\n" + 
             "        \"properties\": null\n" + 
             "      },\n" + 

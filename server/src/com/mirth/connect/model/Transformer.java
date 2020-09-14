@@ -229,4 +229,10 @@ public class Transformer extends FilterTransformer<Step> {
     public Transformer clone() {
         return new Transformer(this);
     }
+
+	@Override
+	public void migrate3_9_1(DonkeyElement element) {
+		// TODO Auto-generated method stub
+		
+	}
 }

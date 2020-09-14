@@ -12,6 +12,7 @@ package com.mirth.connect.plugins.javascriptstep;
 import java.util.Collection;
 import java.util.Map;
 
+import com.mirth.connect.donkey.util.DonkeyElement;
 import com.mirth.connect.donkey.util.purge.PurgeUtil;
 import com.mirth.connect.model.Step;
 import com.mirth.connect.util.JavaScriptSharedUtil;
@@ -65,4 +66,10 @@ public class JavaScriptStep extends Step {
         purgedProperties.put("scriptLines", PurgeUtil.countLines(script));
         return purgedProperties;
     }
+
+	@Override
+	public void migrate3_9_1(DonkeyElement element) {
+		// TODO Auto-generated method stub
+		
+	}
 }

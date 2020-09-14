@@ -101,5 +101,17 @@ public class UdpReceiverProperties extends ConnectorProperties implements PollCo
         return purgedProperties;
     }
 
+	@Override
+	public void migrate3_9_0(DonkeyElement element) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void migrate3_9_1(DonkeyElement element) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

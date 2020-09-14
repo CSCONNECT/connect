@@ -47,6 +47,12 @@ public class FilterTransformerElementTest {
                 // TODO Auto-generated method stub
                 return null;
             }
+
+			@Override
+			public void migrate3_9_1(DonkeyElement element) {
+				// TODO Auto-generated method stub
+				
+			}
         };
         ftElement.migrate3_7_0(filterDonkey);
 

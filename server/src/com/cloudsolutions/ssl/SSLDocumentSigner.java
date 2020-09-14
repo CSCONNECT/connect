@@ -1,23 +1,28 @@
 package com.cloudsolutions.ssl;
 
-import java.io.*;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.security.KeyStore;
 import java.security.PublicKey;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Collections;
-import java.util.*;
+import java.util.List;
 
 import javax.xml.crypto.dsig.CanonicalizationMethod;
 import javax.xml.crypto.dsig.DigestMethod;
 import javax.xml.crypto.dsig.Reference;
+import javax.xml.crypto.dsig.SignatureMethod;
 import javax.xml.crypto.dsig.SignedInfo;
+import javax.xml.crypto.dsig.XMLSignature;
+import javax.xml.crypto.dsig.XMLSignatureFactory;
 import javax.xml.crypto.dsig.dom.DOMSignContext;
-import javax.xml.crypto.dsig.keyinfo.*;
+import javax.xml.crypto.dsig.keyinfo.KeyInfo;
 import javax.xml.crypto.dsig.keyinfo.KeyInfoFactory;
 import javax.xml.crypto.dsig.keyinfo.X509Data;
 import javax.xml.crypto.dsig.spec.C14NMethodParameterSpec;
@@ -30,12 +35,6 @@ import javax.xml.transform.stream.StreamResult;
 import org.apache.poi.poifs.filesystem.DirectoryEntry;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.w3c.dom.Document;
-
-import sun.security.x509.X509CertImpl;
-
-import javax.security.cert.Certificate;
-import javax.security.cert.X509Certificate;
-import javax.xml.crypto.dsig.*;
 
 
 public class SSLDocumentSigner {
@@ -123,12 +122,12 @@ public class SSLDocumentSigner {
 	            String signaturePath = sign();
 	            InputStream signatureAsIS = new FileInputStream(signaturePath);
 
-	            is = new FileInputStream("C://Users//demo//desktop//test.doc");
+	            is = new FileInputStream(System.getProperty("user.dir")+"//test.doc");
 	            POIFSFileSystem poifs = new POIFSFileSystem(is);
 	            DirectoryEntry dirEntry =  poifs.createDirectory("_xmlsignatures"); // create a new DirectoryEntry in the root directory
 	            dirEntry.createDocument("9149", signatureAsIS);
 
-	            String destPath = "C://Users//demo//desktop//signed.doc";
+	            String destPath = System.getProperty("user.dir")+"//signed.doc";
 	            OutputStream os = new FileOutputStream(destPath);
 	            poifs.writeFilesystem(os);
 
@@ -145,7 +144,7 @@ public class SSLDocumentSigner {
 
 		 try (OutputStreamWriter publicKeyWriter =
 		         new OutputStreamWriter(
-		                 new FileOutputStream("C:\\users\\demo\\desktop\\pk.txt"),
+		                 new FileOutputStream(System.getProperty("user.dir")+ "\\pk.txt"),
 		                 StandardCharsets.US_ASCII.newEncoder())) {
 		     publicKeyWriter.write(b64PublicKey);
 		 }catch (Exception e) {

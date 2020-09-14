@@ -346,4 +346,10 @@ public class TcpDispatcherProperties extends ConnectorProperties implements Dest
         purgedProperties.put("templateLines", PurgeUtil.countLines(template));
         return purgedProperties;
     }
+
+	@Override
+	public void migrate3_9_1(DonkeyElement element) {
+		// TODO Auto-generated method stub
+		
+	}
 }

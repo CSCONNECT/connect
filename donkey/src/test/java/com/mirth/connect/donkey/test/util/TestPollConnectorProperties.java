@@ -81,4 +81,10 @@ public class TestPollConnectorProperties extends ConnectorProperties implements 
     public Map<String, Object> getPurgedProperties() {
         return null;
     }
+
+	@Override
+	public void migrate3_9_1(DonkeyElement element) {
+		// TODO Auto-generated method stub
+		
+	}
 }

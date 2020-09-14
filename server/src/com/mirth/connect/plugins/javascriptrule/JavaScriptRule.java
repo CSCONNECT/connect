@@ -12,6 +12,7 @@ package com.mirth.connect.plugins.javascriptrule;
 import java.util.Collection;
 import java.util.Map;
 
+import com.mirth.connect.donkey.util.DonkeyElement;
 import com.mirth.connect.donkey.util.purge.PurgeUtil;
 import com.mirth.connect.model.Rule;
 import com.mirth.connect.util.JavaScriptSharedUtil;
@@ -65,4 +66,10 @@ public class JavaScriptRule extends Rule {
         purgedProperties.put("scriptLines", PurgeUtil.countLines(script));
         return purgedProperties;
     }
+
+	@Override
+	public void migrate3_9_1(DonkeyElement element) {
+		// TODO Auto-generated method stub
+		
+	}
 }

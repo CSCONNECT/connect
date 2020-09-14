@@ -144,6 +144,7 @@ public class ChannelGroup implements Serializable, Migratable, Purgable, Cacheab
     @Override public void migrate3_6_0(DonkeyElement element) {} 
     @Override public void migrate3_7_0(DonkeyElement element) {}
     @Override public void migrate3_9_0(DonkeyElement element) {} // @formatter:on
+    @Override public void migrate3_9_1(DonkeyElement element) {} // @formatter:on
 
     @Override
     public Map<String, Object> getPurgedProperties() {

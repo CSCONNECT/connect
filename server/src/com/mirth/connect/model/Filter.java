@@ -114,8 +114,8 @@ public class Filter extends FilterTransformer<Rule> {
 
     @Override
     public void migrate3_6_0(DonkeyElement element) {}
+    @Override 
 
-    @Override
     public Filter clone() {
         return new Filter(this);
     }

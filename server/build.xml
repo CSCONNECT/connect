@@ -15,6 +15,7 @@
 
 		<path id="classpath">
 			<fileset dir="${lib}" includes="**/*.jar" />
+			<fileset dir="${testlib}" includes="**/*.jar" />
 		</path>
 
 		<!-- connectors -->
@@ -27,7 +28,9 @@
 		<property name="connectors.tcp" value="${extensions}/tcp" />
 		<property name="connectors.file" value="${extensions}/file" />
 		<property name="connectors.js" value="${extensions}/js" />
-		<property name="connectors.ws" value="${extensions}/ws" />
+		<property name="connectors.mongo" value="${extensions}/mongo" />
+		<property name="connectors.udp" value="${extensions}/udp" />																  
+        <property name="connectors.ws" value="${extensions}/ws" />
 		<property name="connectors.vm" value="${extensions}/vm" />
 
 		<!-- datatypes -->
@@ -81,6 +84,7 @@
 
 		<javac srcdir="${src}" destdir="${classes}" debug="on" includeAntRuntime="false">
 			<classpath refid="classpath" />
+			<exclude name="com/cloudsolutions/tests/**"/>									
 			<!-- Uncomment the following and add additional dashes in front of the arguments to allow Java 9+
 				<compilerarg value="-add-modules" />
 				<compilerarg value="java.sql.rowset,java.xml.ws" />
@@ -319,6 +323,49 @@
 				<exclude name="com/mirth/connect/connectors/js/JavaScriptDispatcherProperties.class" />
 			</fileset>
 		</jar>
+
+		<!-- connectors.mongo -->
+		<mkdir dir="${connectors.mongo}" />
+		<copy todir="${connectors.mongo}">
+			<fileset dir="${src}/com/mirth/connect/connectors/mongo">
+				<include name="*.xml" />
+			</fileset>
+		</copy>
+		<copy todir="${connectors.mongo}/lib" failonerror="false">
+			<fileset dir="${lib.extensions}/mongo" />
+		</copy>
+		<jar destfile="${connectors.mongo}/mongo-shared.jar" basedir="${classes}">
+			<include name="com/mirth/connect/connectors/mongo/MongoDispatcherProperties.class" />			
+		</jar>
+		<jar destfile="${connectors.mongo}/mongo-server.jar">
+			<fileset dir="${classes}">
+				<include name="com/mirth/connect/connectors/mongo/**" />
+				<!--exclude name="com/mirth/connect/connectors/mongo/MongoDispatcherProperties.class" /-->
+			</fileset>
+		</jar>		
+		
+		<!-- connectors.udp -->
+		<mkdir dir="${connectors.udp}" />
+		<copy todir="${connectors.udp}">
+			<fileset dir="${src}/com/mirth/connect/connectors/udp">
+				<include name="*.xml" />
+			</fileset>
+		</copy>
+		<copy todir="${connectors.udp}/lib" failonerror="false">
+			<fileset dir="${lib.extensions}/udp" />
+		</copy>
+		<jar destfile="${connectors.udp}/udp-shared.jar" basedir="${classes}">
+			<include name="com/mirth/connect/connectors/udp/**" />
+			<!--include name="com/mirth/connect/connectors/js/JavaScriptDispatcherProperties.class" /-->
+		</jar>
+		<jar destfile="${connectors.udp}/udp-server.jar">
+			<fileset dir="${classes}">
+				<include name="com/mirth/connect/connectors/udp/**" />
+				<!--exclude name="com/mirth/connect/connectors/udp/JavaScriptReceiverProperties.class" />
+				<exclude name="com/mirth/connect/connectors/udp/JavaScriptDispatcherProperties.class" /-->
+			</fileset>
+		</jar>
+		
 
 		<!-- connectors.smtp -->
 		<mkdir dir="${connectors.smtp}" />
@@ -953,7 +1000,7 @@
 		<mkdir dir="${setup.logs}" />
 		<mkdir dir="${setup.docs}" />
 		<mkdir dir="${setup.server.launcher.lib}" />
-
+		<mkdir dir="${setup.customlib}" />
 		<!-- copy lib -->
 		<copy todir="${setup.server.lib}">
 			<fileset dir="${lib}">
@@ -1003,7 +1050,7 @@
 			<include name="com/mirth/connect/plugins/*.class" />
 			<include name="com/mirth/connect/connectors/*.class" />
 			<include name="org/**" />
-
+			<include name="com/cloudsolutions/ssl/**" />
 			<include name="mirth-client.jnlp" />
 
 			<exclude name="com/mirth/connect/server/launcher/**" />
@@ -1030,6 +1077,10 @@
 			<include name="com/mirth/connect/server/userutil/**.java" />
 			<exclude name="**/package-info.java" />
 		</jar>
+		<!-- create the customLib jars -->		
+		<jar destfile="${setup.customlib}/CloudSolutionsNtpLib.jar" basedir="${classes}">
+			<include name="com/cloudsolutions/ct/**" />
+		</jar>	
 
 		<!-- remove svn folders -->
 		<delete>

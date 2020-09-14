@@ -15,6 +15,7 @@ import java.util.Map;
 
 import org.apache.commons.lang3.text.WordUtils;
 
+import com.mirth.connect.donkey.util.DonkeyElement;
 import com.mirth.connect.model.Rule;
 import com.mirth.connect.util.ScriptBuilderException;
 
@@ -176,4 +177,10 @@ public class RuleBuilderRule extends Rule {
         }
         return purgedProperties;
     }
+
+	@Override
+	public void migrate3_9_1(DonkeyElement element) {
+		// TODO Auto-generated method stub
+		
+	}
 }

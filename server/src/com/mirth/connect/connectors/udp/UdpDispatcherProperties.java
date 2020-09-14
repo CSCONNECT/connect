@@ -120,4 +120,16 @@ public class UdpDispatcherProperties extends ConnectorProperties implements Dest
 	public boolean isMessageByteArray() {
 		return isMessageByteArray;
 	}
+
+	@Override
+	public void migrate3_9_0(DonkeyElement element) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void migrate3_9_1(DonkeyElement element) {
+		// TODO Auto-generated method stub
+		
+	}
 }

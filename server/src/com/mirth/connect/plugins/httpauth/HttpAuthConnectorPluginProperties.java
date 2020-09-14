@@ -75,4 +75,7 @@ public abstract class HttpAuthConnectorPluginProperties extends ConnectorPluginP
 
     @Override
     public void migrate3_5_0(DonkeyElement element) {}
+    
+    @Override
+    public void migrate3_9_1(DonkeyElement element) {}
 }

@@ -149,4 +149,10 @@ public class VmDispatcherProperties extends ConnectorProperties implements Desti
         purgedProperties.put("channelTemplateLines", PurgeUtil.countLines(channelTemplate));
         return purgedProperties;
     }
+
+	@Override
+	public void migrate3_9_1(DonkeyElement element) {
+		// TODO Auto-generated method stub
+		
+	}
 }

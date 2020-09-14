@@ -79,4 +79,10 @@ public class VmReceiverProperties extends ConnectorProperties implements SourceC
         purgedProperties.put("sourceConnectorProperties", sourceConnectorProperties.getPurgedProperties());
         return purgedProperties;
     }
+
+	@Override
+	public void migrate3_9_1(DonkeyElement element) {
+		// TODO Auto-generated method stub
+		
+	}
 }

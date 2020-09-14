@@ -221,4 +221,10 @@ public class SourceConnectorProperties implements Serializable, Migratable, Purg
         purgedProperties.put("queueBufferSize", queueBufferSize);
         return purgedProperties;
     }
+
+	@Override
+	public void migrate3_9_1(DonkeyElement element) {
+		// TODO Auto-generated method stub
+		
+	}
 }

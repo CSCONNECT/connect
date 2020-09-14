@@ -66,4 +66,10 @@ public class XMLSerializationProperties extends SerializationProperties {
         purgedProperties.put("stripNamespaces", stripNamespaces);
         return purgedProperties;
     }
+
+	@Override
+	public void migrate3_9_1(DonkeyElement element) {
+		// TODO Auto-generated method stub
+		
+	}
 }

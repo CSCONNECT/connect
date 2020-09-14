@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.mirth.connect.donkey.model.channel.ConnectorPluginProperties;
+import com.mirth.connect.donkey.util.DonkeyElement;
 
 public class NoneHttpAuthProperties extends HttpAuthConnectorPluginProperties {
 
@@ -31,4 +32,10 @@ public class NoneHttpAuthProperties extends HttpAuthConnectorPluginProperties {
         purgedProperties.put("authType", getAuthType());
         return purgedProperties;
     }
+
+	@Override
+	public void migrate3_9_1(DonkeyElement element) {
+		// TODO Auto-generated method stub
+		
+	}
 }

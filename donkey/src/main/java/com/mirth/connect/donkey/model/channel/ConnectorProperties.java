@@ -71,6 +71,19 @@ public abstract class ConnectorProperties implements Serializable, Migratable, P
             queueProperties.setNodeName("destinationConnectorProperties");
         }
     }
+    
+    @Override
+    public void migrate3_9_1(DonkeyElement element) {
+        DonkeyElement responseProperties = element.getChildElement("responseConnectorProperties");
+        if (responseProperties != null) {
+            responseProperties.setNodeName("sourceConnectorProperties");
+        }
+
+        DonkeyElement queueProperties = element.getChildElement("queueConnectorProperties");
+        if (queueProperties != null) {
+            queueProperties.setNodeName("destinationConnectorProperties");
+        }
+    }
 
     @Override
     public Map<String, Object> getPurgedProperties() {

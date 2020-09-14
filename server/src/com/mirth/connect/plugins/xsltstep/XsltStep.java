@@ -14,6 +14,7 @@ import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.mirth.connect.donkey.util.DonkeyElement;
 import com.mirth.connect.donkey.util.purge.PurgeUtil;
 import com.mirth.connect.model.FilterTransformerIterable;
 import com.mirth.connect.model.IteratorProperties;
@@ -154,4 +155,10 @@ public class XsltStep extends Step implements FilterTransformerIterable<Step> {
         purgedProperties.put("useCustomFactory", useCustomFactory);
         return purgedProperties;
     }
+
+	@Override
+	public void migrate3_9_1(DonkeyElement element) {
+		// TODO Auto-generated method stub
+		
+	}
 }

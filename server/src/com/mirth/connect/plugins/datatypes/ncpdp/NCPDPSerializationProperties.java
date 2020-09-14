@@ -91,4 +91,10 @@ public class NCPDPSerializationProperties extends SerializationProperties {
     public Map<String, Object> getPurgedProperties() {
         return null;
     }
+
+	@Override
+	public void migrate3_9_1(DonkeyElement element) {
+		// TODO Auto-generated method stub
+		
+	}
 }

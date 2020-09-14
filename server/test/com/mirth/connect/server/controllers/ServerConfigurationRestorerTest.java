@@ -46,6 +46,7 @@ import org.mockito.stubbing.Answer;
 
 import com.mirth.connect.client.core.ControllerException;
 import com.mirth.connect.client.core.Version;
+import com.mirth.connect.donkey.util.DonkeyElement;
 import com.mirth.connect.model.Channel;
 import com.mirth.connect.model.ChannelDependency;
 import com.mirth.connect.model.ChannelGroup;
@@ -924,5 +925,11 @@ public class ServerConfigurationRestorerTest {
         public TestResourceProperties() {
             super("test", "type");
         }
+
+		@Override
+		public void migrate3_9_1(DonkeyElement element) {
+			// TODO Auto-generated method stub
+			
+		}
     }
 }

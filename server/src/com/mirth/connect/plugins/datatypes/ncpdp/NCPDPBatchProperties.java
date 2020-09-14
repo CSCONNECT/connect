@@ -91,4 +91,10 @@ public class NCPDPBatchProperties extends BatchProperties {
         purgedProperties.put("batchScriptLines", PurgeUtil.countLines(batchScript));
         return purgedProperties;
     }
+
+	@Override
+	public void migrate3_9_1(DonkeyElement element) {
+		// TODO Auto-generated method stub
+		
+	}
 }
