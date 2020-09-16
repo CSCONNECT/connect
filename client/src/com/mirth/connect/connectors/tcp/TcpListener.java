@@ -47,6 +47,8 @@ import com.mirth.connect.plugins.BasicModeClientProvider;
 import com.mirth.connect.plugins.ConnectorPropertiesPlugin;
 import com.mirth.connect.plugins.TransmissionModeClientProvider;
 import com.mirth.connect.plugins.TransmissionModePlugin;
+import com.mirth.connect.client.ui.components.MirthCheckBox;
+import javax.swing.SwingConstants;
 
 public class TcpListener extends ConnectorSettingsPanel implements ActionListener {
 
@@ -83,6 +85,22 @@ public class TcpListener extends ConnectorSettingsPanel implements ActionListene
         transmissionModeComboBox.setModel(model);
 
         parent.setupCharsetEncodingForConnector(charsetEncodingComboBox);
+        
+        lblTlssslEnabled = new JLabel("TLS/SSL Enabled:");
+        lblTlssslEnabled.setHorizontalAlignment(SwingConstants.RIGHT);
+        add(lblTlssslEnabled, "cell 0 16,alignx right");
+        
+        isTLSEnabledField = new MirthCheckBox("");
+        isTLSEnabledField.setText("");
+        add(isTLSEnabledField, "cell 1 16");
+        
+        isTLSEnabledField.addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				((TcpReceiverProperties)getProperties()).setTLSEnabled(isTLSEnabledField.isSelected());				
+			}
+		});
+        
     }
 
     @Override
@@ -108,7 +126,7 @@ public class TcpListener extends ConnectorSettingsPanel implements ActionListene
         properties.setKeepConnectionOpen(keepConnectionOpenYesRadio.isSelected());
         properties.setCharsetEncoding(parent.getSelectedEncodingForConnector(charsetEncodingComboBox));
         properties.setDataTypeBinary(dataTypeBinaryRadio.isSelected());
-
+        properties.setTLSEnabled(isTLSEnabledField.isSelected());
         if (respondOnNewConnectionYesRadio.isSelected()) {
             properties.setRespondOnNewConnection(TcpReceiverProperties.NEW_CONNECTION);
         } else if (respondOnNewConnectionNoRadio.isSelected()) {
@@ -738,4 +756,6 @@ public class TcpListener extends ConnectorSettingsPanel implements ActionListene
     private JLabel responsePortLabel;
     private MirthTextField responsePortField;
     private AbstractConnectorPropertiesPanel responseConnectorPropertiesPanel;
+    private MirthCheckBox isTLSEnabledField;
+    private JLabel lblTlssslEnabled;
 }

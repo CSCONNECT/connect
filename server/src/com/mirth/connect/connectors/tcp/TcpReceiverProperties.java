@@ -55,7 +55,8 @@ public class TcpReceiverProperties extends ConnectorProperties implements Listen
     private String responseAddress;
     private String responsePort;
     private Set<ConnectorPluginProperties> responseConnectorPluginProperties;
-
+    private boolean isTLSEnabled;
+    
     public TcpReceiverProperties() {
         listenerConnectorProperties = new ListenerConnectorProperties("6661");
         sourceConnectorProperties = new SourceConnectorProperties(SourceConnectorProperties.RESPONSE_SOURCE_TRANSFORMED);
@@ -325,7 +326,15 @@ public class TcpReceiverProperties extends ConnectorProperties implements Listen
         }
         return purgedProperties;
     }
+    
+	public void setTLSEnabled(boolean isTLSEnabled) {
+		this.isTLSEnabled = isTLSEnabled;
+	}
 
+	public boolean isTLSEnabled() {
+		return this.isTLSEnabled;
+	}
+	
 	@Override
 	public void migrate3_9_1(DonkeyElement element) {
 		// TODO Auto-generated method stub

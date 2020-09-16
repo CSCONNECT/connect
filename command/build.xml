@@ -23,7 +23,7 @@
 
 	<target name="build" depends="compile">
 		<mkdir dir="${build}" />
-
+		
 		<!-- log4j.properties file -->
 		<mkdir dir="${build}/conf" />
 
