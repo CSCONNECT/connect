@@ -13,7 +13,8 @@ import java.awt.Color;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import javax.swing.GroupLayout;
+import javax.swing.SwingConstants;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
@@ -115,7 +116,8 @@ public class TcpSender extends ConnectorSettingsPanel implements ActionListener 
         properties.setDataTypeBinary(dataTypeBinaryRadio.isSelected());
         properties.setCharsetEncoding(parent.getSelectedEncodingForConnector(charsetEncodingCombobox));
         properties.setTemplate(templateTextArea.getText());
-
+        properties.setTLSEnabled(isTLSEnabledField.isSelected());
+        
         logger.debug("getProperties: properties=" + properties);
 
         return properties;
@@ -204,6 +206,8 @@ public class TcpSender extends ConnectorSettingsPanel implements ActionListener 
         parent.setPreviousSelectedEncodingForConnector(charsetEncodingCombobox, props.getCharsetEncoding());
 
         templateTextArea.setText(props.getTemplate());
+        
+        isTLSEnabledField.setSelected(props.isTLSEnabled());    
     }
 
     @Override
@@ -594,6 +598,22 @@ public class TcpSender extends ConnectorSettingsPanel implements ActionListener 
         checkRemoteHostNoRadio.setToolTipText("<html>Select Yes to check if the remote host has closed the connection before each message.<br>Select No to assume the remote host has not closed the connection.<br>Checking the remote host will decrease throughput but will prevent the message from<br>erroring if the remote side closed the connection and queueing is disabled.</html>");
         checkRemoteHostNoRadio.setMargin(new java.awt.Insets(0, 0, 0, 0));
         
+        lblTlssslEnabled = new JLabel("TLS/SSL Enabled:");
+        lblTlssslEnabled.setHorizontalAlignment(SwingConstants.RIGHT);
+        
+        isTLSEnabledField = new MirthCheckBox("");
+        isTLSEnabledField.setText(""); 
+        isTLSEnabledField.setHorizontalAlignment(SwingConstants.LEFT);
+        isTLSEnabledField.setVerticalAlignment(SwingConstants.TOP);
+       
+        isTLSEnabledField.addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				((TcpDispatcherProperties)getProperties()).setTLSEnabled(isTLSEnabledField.isSelected());				
+			}
+		});
+        
+        
         modeLabel = new JLabel("Mode:");
         ButtonGroup modeButtonGroup = new ButtonGroup();
 
@@ -677,6 +697,9 @@ public class TcpSender extends ConnectorSettingsPanel implements ActionListener 
         add(charsetEncodingCombobox);
         add(templateLabel, "newline, aligny top, right");
         add(templateTextArea, "w 425, h 105, grow, span, push");
+        
+        add(lblTlssslEnabled);
+        add(isTLSEnabledField);
     }
 
     private void dataTypeBinaryRadioActionPerformed(ActionEvent evt) {
@@ -895,4 +918,6 @@ public class TcpSender extends ConnectorSettingsPanel implements ActionListener 
     private JButton testConnection;
     private MirthComboBox transmissionModeComboBox;
     private JLabel transmissionModeLabel;
+    private MirthCheckBox isTLSEnabledField;
+    private JLabel lblTlssslEnabled;
 }

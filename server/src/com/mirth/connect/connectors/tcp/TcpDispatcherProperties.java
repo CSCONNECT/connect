@@ -49,6 +49,7 @@ public class TcpDispatcherProperties extends ConnectorProperties implements Dest
     private boolean dataTypeBinary;
     private String charsetEncoding;
     private String template;
+    private boolean isTLSEnabled;
 
     public TcpDispatcherProperties() {
         destinationConnectorProperties = new DestinationConnectorProperties(true);
@@ -346,7 +347,15 @@ public class TcpDispatcherProperties extends ConnectorProperties implements Dest
         purgedProperties.put("templateLines", PurgeUtil.countLines(template));
         return purgedProperties;
     }
+    
+	public void setTLSEnabled(boolean isTLSEnabled) {
+		this.isTLSEnabled = isTLSEnabled;
+	}
 
+	public boolean isTLSEnabled() {
+		return this.isTLSEnabled;
+	}
+	
 	@Override
 	public void migrate3_9_1(DonkeyElement element) {
 		// TODO Auto-generated method stub
