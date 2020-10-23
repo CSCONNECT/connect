@@ -109,7 +109,7 @@ public class UdpDispatcher extends DestinationConnector {
     @Override
     public void replaceConnectorProperties(ConnectorProperties connectorProperties, ConnectorMessage message) {}
 
-    int timeout=10000;
+    int timeout=3000;
     @Override
     public Response send(ConnectorProperties connectorProperties, ConnectorMessage msg) throws InterruptedException {
        UdpDispatcherProperties udpDispPopsParam = (UdpDispatcherProperties) this.connectorProperties;

@@ -9,10 +9,13 @@ import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 import java.util.Arrays;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.KeyManager;
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLParameters;
+import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509KeyManager;
@@ -95,6 +98,13 @@ public class SSLUtils {
 		PropertiesConfiguration mirthProperties = new PropertiesConfiguration("mirth.properties");
 		String atnakeystorePath = mirthProperties.getProperty("atna.keystore.path").toString();
 		String atnakeystorePass = mirthProperties.getProperty("atna.keystore.storepass").toString();
+		Object dnVerification = mirthProperties.getProperty("domain.name.verification.enabled");
+		if(dnVerification!=null 
+				&& dnVerification.toString().equals("true")) {						
+		}else {
+			disableHostNameVerification(); //disable hostname verification if it's not enabled
+		}
+		
 		KeyStore keyStore = SSLUtils.readKeyStoreFile(atnakeystorePath, atnakeystorePass);
 		return provideSSLContext(keyStore, atnakeystorePass.toCharArray());
 	}
@@ -119,6 +129,18 @@ public class SSLUtils {
 		
 		sslContext.init(keyManagers, trustManagers, null);
 		return sslContext;
+	}
+	
+	public static void disableHostNameVerification() {
+        // Create all-trusting host name verifier
+        HostnameVerifier allHostsValid = new HostnameVerifier() {
+            public boolean verify(String hostname, SSLSession session) {
+                return true;
+            }
+        };
+
+        // Install the all-trusting host verifier
+        HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
 	}
 
 	private static X509KeyManager getKeyManager(String algorithm, KeyStore keystore, char[] password)
